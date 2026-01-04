@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <title>Raissa Harrell | Portfolio</title>
     <style>
+        /* Soft floating animation */
+@keyframes float-text {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float-text 5s ease-in-out infinite;
+}
       * {
         box-sizing: border-box;
         margin: 0;
@@ -199,7 +209,7 @@
 
       <div class="intro-layout">
         <div class="intro-main">
-          <h1>Raissa Harrell</h1>
+          <h1 class="floating">Raissa Harrell</h1>
           <p class="subtitle">
             Portfolio &mdash; Graduate Student | Project Management &amp; Operations
           </p>
