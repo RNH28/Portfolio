@@ -187,6 +187,23 @@
         opacity: 1;
       }
     }
+    @keyframes floatDrift1 {
+  from {
+    transform: translateY(0) scale(1.15);
+  }
+  to {
+    transform: translateY(18px) scale(1.2);
+  }
+}
+
+@keyframes floatDrift2 {
+  from {
+    transform: translateY(0) scale(1.1);
+  }
+  to {
+    transform: translateY(-16px) scale(1.17);
+  }
+}
 
     /* ========= RESUME SECTION BELOW HERO ========= */
 
@@ -316,7 +333,321 @@
   margin-left: 18px;
   margin-top: 4px;
 }
-    @media (max-width: 720px) {
+/* ========= PROJECTS & CERTIFICATIONS SECTION ========= */
+
+.project-section {
+  padding: 80px 8% 110px;
+  position: relative;
+  overflow: hidden;
+  
+  /* soft warm base tone */
+  background: #f4f1ea;
+}
+/* ==== EARTHY BACKGROUND ART ==== */
+
+.project-section::before,
+.project-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.55;
+  transform: scale(1.2);
+  pointer-events: none;
+}
+
+/* top right olive blob */
+.project-section::before {
+  width: 480px;
+  height: 480px;
+  right: -140px;
+  top: -80px;
+
+  background: radial-gradient(
+    circle at 40% 40%,
+    rgba(109, 118, 90, 0.55),
+    rgba(85, 90, 70, 0.35),
+    transparent 70%
+  );
+
+  animation: floatDrift1 18s ease-in-out infinite alternate;
+}
+
+/* bottom left clay blob */
+.project-section::after {
+  width: 520px;
+  height: 520px;
+  left: -160px;
+  bottom: -120px;
+
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(166, 132, 96, 0.45),
+    rgba(126, 96, 70, 0.32),
+    transparent 75%
+  );
+
+  animation: floatDrift2 22s ease-in-out infinite alternate;
+}
+@keyframes floatDrift1 {
+  from {
+    transform: translateY(0) scale(1.15);
+  }
+  to {
+    transform: translateY(18px) scale(1.2);
+  }
+}
+
+@keyframes floatDrift2 {
+  from {
+    transform: translateY(0) scale(1.1);
+  }
+  to {
+    transform: translateY(-16px) scale(1.17);
+  }
+}
+@keyframes projectHeadingIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectBlockIn {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes projectTextIn {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes headingLevitate {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes imageLevitate {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-8px);
+  }
+}
+/* Heading line + word “PROJECT” */
+.project-heading {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 2.4rem;
+  letter-spacing: 0.7rem;
+  color: #4c543c;
+}
+
+.project-heading span:first-child {
+  text-transform: uppercase;
+}
+
+.project-heading .project-line {
+  flex: 1;
+  height: 2px;
+  background: #8a955e;
+}
+
+/* Main layout: image left, text right */
+.project-hero {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.project-image {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  background: #dcd7c8; /* soft placeholder tone */
+}
+.project-logo {
+  width: 240px;        /* adjust size */
+  height: 240px;       /* force square shape */
+  object-fit: cover;   /* keeps proportions inside circle */
+  border-radius: 50%;  /* makes it circular */
+  display: block;
+  margin: 0 auto 16px; /* centers it */
+  animation: swooshInRight 1.1s ease-out both;
+}
+@keyframes swooshInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(120px) scale(0.9) rotate(3deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateX(-6px) scale(1.05) rotate(-1deg);
+  }
+
+  85% {
+    transform: translateX(3px) scale(1.02);
+  }
+
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+/* animate the PROJECT heading */
+.project-heading {
+  opacity: 0;
+  animation:
+    projectHeadingIn 0.9s ease-out forwards,
+    headingLevitate 8s ease-in-out 0.9s infinite alternate;
+}
+
+/* fade the whole card in */
+.project-card {
+  opacity: 0;
+  animation: projectBlockIn 1s ease-out 0.2s forwards;
+}
+
+/* slide text in from the right */
+.project-info {
+  opacity: 0;
+  animation: projectTextIn 1s ease-out 0.35s forwards;
+}
+
+/* levitate the image gently */
+.project-image {
+  animation: imageLevitate 10s ease-in-out 0.8s infinite alternate;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-title {
+  font-size: 1.6rem;
+  letter-spacing: 0.18rem;
+  color: #8fa563;
+}
+
+.project-text {
+  margin: 0;              /* removes top + bottom spacing */
+  line-height: 1.55;      /* keeps readability */
+  text-align: justify;
+  color: #6b6a5b;
+  font-size: 0.95rem;
+}
+
+/* small gap only between project-text paragraphs */
+.project-text + .project-text {
+  margin-top: 8px;
+}
+
+/* Mobile: stack image + text nicely */
+@media (max-width: 768px) {
+  .project-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .project-title,
+  .project-text {
+    text-align: center;
+  }
+}
+
+/* text under media */
+.project-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.project-title-left {
+  flex: 1 1 220px;
+  font-size: 1.2rem;
+  letter-spacing: 0.18rem;
+  color: #668139;
+}
+
+.project-desc-right {
+  flex: 2 1 280px;
+  font-size: 0.95rem;
+  color: #4a4435;
+}
+
+/* certifications gallery */
+
+.cert-section {
+  margin-top: 60px;
+}
+
+.cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.cert-item {
+  flex: 1 1 220px;
+}
+
+.cert-img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(37, 32, 20, 0.12);
+}
+
+.cert-caption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #5f5745;
+}
+    @media (max-width: 720px) {  
+
+  .project-heading {
+    font-size: 1.8rem;
+    letter-spacing: 0.4rem;
+    gap: 16px;
+  }
+
+  .project-info {
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  text-align: center;
+}
       .hero {
         padding: 70px 24px 40px;
       }
@@ -505,4 +836,51 @@
     <!-- You can add more roles here later the same way -->
   </div>
 </div>
- 
+ <p style="
+  margin-top: 34px;
+  text-align: center;
+  letter-spacing: .18rem;
+  font-size: .85rem;
+  color: #6b6a5b;
+">
+  scroll to continue ↓
+</p>
+</div> <!-- end resume section-wrapper -->
+<div class="section-wrapper">
+
+  <section class="project-section">
+
+    <h2 class= "hero-top project heading">
+  CREATIVE PROJECTS
+  <span class="project-line"></span>
+</h2>
+
+   <div class="project-hero">
+
+  <a href="https://www.instagram.com/hustleandstride/"
+     target="_blank"
+     rel="noopener noreferrer">
+    <img src="/Users/raissawareness/Desktop/My first website/run-club-logo.PNG"
+         alt="Hustle & Stride Run Club Instagram"
+         class="project-logo">
+  </a>
+
+  <div class="project-info">
+    <h3 class="project-title">Creative Work Overview</h3>
+
+
+        <p class="project-text">
+
+         I developed social media content for a new run club based in Goodyear, helping establish its visual identity and community presence. My work included creating Instagram reels that highlighted group runs, member moments, and brand storytelling, as well as capturing photos to showcase the club’s culture, energy, and inclusivity. 
+         <p class="project-text">
+            I also designed promotional flyers and digital graphics to support event announcements, sign-ups, and community engagement, and created a Linktree landing hub to centralize event links, registration forms, and social channels. Through consistent content creation and visual branding, I contributed to building awareness, strengthening member connection, and shaping the club’s early online presence.
+            </p>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
