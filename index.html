@@ -5,20 +5,23 @@
     <title>Raissa Harrell | Portfolio</title>
     <style>
         /* Soft floating animation */
-@keyframes float-text {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
+@keyframes float-in-once {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .floating {
-  animation: float-text 5s ease-in-out infinite;
+  animation: float-in-once 1.8s ease-out 1;
 }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
 
       body {
         font-family: "Georgia", "Garamond", serif;
