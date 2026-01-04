@@ -1,350 +1,508 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Raissa Harrell | Portfolio</title>
-    <style>
-        /* Soft floating animation */
-@keyframes float-in-once {
-  0% {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(-6px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raissa N. Harrell — Portfolio</title>
+
+  <style>
+    /* ========= BASE STYLING ========= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Cooper Hewitt-style stack */
+    body {
+      font-family: "Cooper Hewitt", "CooperHewitt",
+        -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: linear-gradient(
+        180deg,
+        #f6f1e9 0%,
+        #f0e4d4 40%,
+        #f7f3ec 100%
+      );
+      color: #3f3a2f;
+      line-height: 1.6;
+    }
+
+    /* ========= HERO COVER SECTION ========= */
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 90px 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* abstract background shapes on hero */
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(2px);
+      opacity: 0.75;
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    /* top-right “sunset” blob */
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle at 30% 30%,
+          #f8e6c5 0%,
+          #d9b892 40%,
+          #b6825a 100%);
+    }
+
+    /* bottom-left “sage hill” blob */
+    .hero::after {
+      width: 460px;
+      height: 460px;
+      bottom: -160px;
+      left: -120px;
+      background: radial-gradient(circle at 40% 60%,
+          #c1d0b4 0%,
+          #8a9f79 35%,
+          #5b6a55 100%);
+    }
+
+    /* hero text */
+
+    .hero-top {
+      letter-spacing: 0.35rem;
+      font-size: 1rem;
+      color: #5c6148;
+    }
+
+    .hero-center {
+      font-size: 3.4rem;
+      letter-spacing: 1.1rem;
+      color: #444a35;
+    }
+
+    .hero-bottom {
+      letter-spacing: 0.35rem;
+      font-size: 0.9rem;
+      color: #615a44;
+    }
+
+    .scroll-hint {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      letter-spacing: 0.15rem;
+      color: #867d68;
+    }
+
+    /* ========= VERTICAL LINES ========= */
+
+    .hero-line {
+      position: absolute;
+      width: 2px;
+      background: #646a4d;
+      opacity: 0;
+      animation: lineGrow 1.4s ease-out forwards;
+    }
+
+    .hero-line-right {
+      right: 22%;
+      top: 0;
+      height: 70%;
+      animation-delay: 0.3s;
+    }
+
+    .hero-line-left {
+      left: 12%;
+      bottom: 0;
+      height: 70%;
+      animation-delay: 0.6s;
+    }
+
+    /* ========= ANIMATIONS ========= */
+
+    @keyframes floatInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .float-in {
+      animation: floatInUp 1.2s ease-out both;
+    }
+
+    .float-in-delay {
+      animation: floatInUp 1.2s ease-out 0.4s both;
+    }
+
+    @keyframes swirlZoomPortfolio {
+      0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.6) rotate(-10deg);
+      }
+
+      40% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.2) rotate(6deg);
+      }
+
+      70% {
+        transform: translateY(2px) scale(1.08) rotate(-2deg);
+      }
+
+      100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+      }
+    }
+
+    .portfolio-word {
+      animation: swirlZoomPortfolio 1.8s ease-out forwards;
+      transform-origin: center;
+    }
+
+    @keyframes lineGrow {
+      0% {
+        height: 0;
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    /* ========= RESUME SECTION BELOW HERO ========= */
+
+    .section-wrapper {
+      padding: 70px 8% 90px;
+    }
+
+    .resume-card {
+      position: relative;
+      background: radial-gradient(circle at top left,
+          rgba(201, 214, 187, 0.45) 0%,
+          rgba(250, 247, 240, 0.95) 45%,
+          #f9f5ee 100%);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(37, 32, 20, 0.13);
+      animation: floatInUp 1.1s ease-out 0.6s both;
+      overflow: hidden;
+    }
+
+    .resume-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      top: -80px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%,
+          rgba(228, 195, 145, 0.7),
+          rgba(154, 119, 82, 0.0));
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.22rem;
+      color: #494534;
+      margin-bottom: 12px;
+    }
+
+    .hr-line {
+      height: 1px;
+      background: #c4b8a3;
+      margin: 10px 0 22px;
+    }
+
+    .resume-body {
+      font-size: 0.95rem;
+      color: #4a4435;
+    }
+
+    /* ========= RESPONSIVE ========= */
+/* ========= RESUME LAYOUT INSIDE CARD ========= */
+
+.resume-header {
+  margin-bottom: 18px;
 }
 
-.floating {
-  animation: float-in-once 1.8s ease-out 1;
+.resume-header h1 {
+  font-size: 1.4rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  color: #454131;
 }
 
-      body {
-        font-family: "Georgia", "Garamond", serif;
-  background-color: #f3efe6;
-  color: #3f3726;
-  line-height: 1.6;
-      }
+.resume-contact {
+  font-size: 0.9rem;
+  color: #6f6a5a;
+}
 
-      .page {
-        max-width: 1100px;
-  margin: 24px auto 48px;
-  background: #faf7f1;
-  padding: 32px 40px 48px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  border-radius: 10px;
-      }
-
-      /* Top banner */
-      .banner {
-       height: 140px;
-  margin: -32px -40px 32px;
-  background: linear-gradient(135deg, #6b7b52, #8c6f52);
-      }
-
-      .banner::before,
-      .banner::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        width: 160%;
-        height: 80px;
-        background: repeating-linear-gradient(
-          to right,
-          rgba(255, 255, 255, 0.08),
-          rgba(255, 255, 255, 0.08) 40px,
-          transparent 40px,
-          transparent 80px
-        );
-        opacity: 0.7;
-        transform: translateX(-10%);
-      }
-
-      h1 {
-         font-size: 2.4rem;
-  margin-bottom: 8px;
-  color: #3f3726;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 16px;
-      }
-
-      .intro-layout {
-        display: flex;
-        gap: 40px;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
-      }
-
-      .intro-main {
-        flex: 2;
-        min-width: 260px;
-      }
-
-      .intro-nav {
-        flex: 1;
-        min-width: 220px;
-      }
-
-      .resume-button {
-        display: inline-block;
-        padding: 10px 18px;
-        background: #4a6cff;
-        color: #ffffff;
-        text-decoration: none;
-        border-radius: 999px;
-        font-size: 0.95rem;
-        margin: 16px 0 24px;
-      }
-
-      .resume-button:hover {
-        background: #3a55cc;
-      }
-
-      h2.section-title {
-        font-size: 1.4rem;
-  margin: 32px 0 8px;
-  color: #4e432f;
-      }
-
-      .nav-card {
-        background: #f9fafb;
-        border-radius: 8px;
-        padding: 16px 18px;
-        border: 1px solid #e5e7eb;
-      }
-
-      .nav-title {
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-
-      .nav-list {
-        list-style: none;
-        font-size: 0.95rem;
-      }
-
-      .nav-list li {
-        margin-bottom: 6px;
-      }
-
-      .nav-list a {
-        text-decoration: none;
-        color: #374151;
-      }
-
-      .nav-list a:hover {
-        color: #111827;
-      }
-
-      ul {
-        margin-left: 20px;
-        margin-top: 6px;
-      }
-
-      .tag-pill {
-        display: inline-block;
-        padding: 2px 8px;
-        font-size: 0.75rem;
-        border-radius: 999px;
-        background: #e5edff;
-        color: #1d3bb3;
-        margin-left: 6px;
-      }
-
-      .edu-item,
-      .pub-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        margin-top: 6px;
-      }
-
-      .edu-left,
-      .pub-left {
-        font-weight: 500;
-      }
-
-      .edu-right,
-      .pub-right {
-        font-size: 0.8rem;
-        color: #6b7280;
-      }
-
-      @media (max-width: 768px) {
-        .page {
-          padding: 24px 18px 32px;
-          margin: 0;
-          border-radius: 0;
-        }
-
-        .banner {
-          margin: -24px -18px 24px;
-        }
-      }
-      .resume-button {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #735b42;
-  color: #ffffff;
+.resume-contact a {
+  color: inherit;
   text-decoration: none;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  margin: 16px 0 24px;
 }
 
-.resume-button:hover {
-  background: #5a4633;
+.resume-contact a:hover {
+  text-decoration: underline;
 }
-    </style>
-  </head>
 
-  <body>
-    <div class="page">
-      <div class="banner"></div>
+/* education rows */
 
-      <div class="intro-layout">
-        <div class="intro-main">
-          <h1 class="floating">Raissa Harrell</h1>
-          <p class="subtitle">
-            Portfolio &mdash; Graduate Student | Project Management &amp; Operations
-          </p>
+.edu-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
 
-          <p>
-            Hi there! I’m Raissa, a detail-driven operations and project management
-            professional with a background in legal services and higher education.
-            I enjoy bringing order to complex projects, supporting teams, and
-            creating experiences that feel organized, intentional, and human.
-          </p>
+.edu-left {
+  font-weight: 600;
+}
 
-          <p style="margin-top: 10px;">
-            As I continue my MBA and grow my career, this portfolio will showcase my
-            certifications, projects, and accomplishments that reflect my growth in
-            project management, operations, and event coordination.
-          </p>
+.edu-right {
+  font-style: italic;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  color: #6b6758;
+}
 
-          <a href="#" class="resume-button">Download My Resume (Coming Soon)</a>
-        </div>
+/* experience rows */
 
-        <aside class="intro-nav">
-          <div class="nav-card">
-            <div class="nav-title">Navigation</div>
-            <ul class="nav-list">
-              <li><a href="Education.html">Education &amp; Certifications</a></li>
-              <li><a href="#publications">Writing &amp; Presentations</a></li>
-              <li><a href="#portfolio">Projects &amp; Portfolio</a></li>
-              <li><a href="#skills">Key Skills &amp; Tools</a></li>
-              <li><a href="#process">Process &amp; Methodologies</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-        </aside>
-      </div>
+.job {
+  margin-top: 14px;
+  margin-bottom: 10px;
+}
 
-      <!-- Education & Certifications -->
-      <section id="education">
-         <h2 class="section-title">
-  <a class="section-link" href="Education.html">
-    Education &amp; Certifications
-  </a>
-</h2>
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 600;
+}
 
-        <div class="edu-item">
-          <div class="edu-left">
-            MBA &mdash; Project Management Emphasis
-            <span class="tag-pill">In Progress</span>
-          </div>
-          <div class="edu-right">Grand Canyon University</div>
-        </div>
+.job-location {
+  font-weight: 400;
+}
 
-        <div class="edu-item">
-          <div class="edu-left">
-            Lean Six Sigma
-            <span class="tag-pill">In Progress</span>
-          </div>
-          <div class="edu-right">Process Improvement</div>
-        </div>
+.job-title {
+  font-style: italic;
+  margin: 2px 0 4px;
+}
 
-        <div class="edu-item">
-          <div class="edu-left">
-            Legal Studies &amp; Operations Experience
-            <span class="tag-pill">Foundational</span>
-          </div>
-          <div class="edu-right">8+ Years</div>
-        </div>
-      </section>
+.job ul {
+  margin-left: 18px;
+  margin-top: 4px;
+}
+    @media (max-width: 720px) {
+      .hero {
+        padding: 70px 24px 40px;
+      }
+  .edu-row,
+  .job-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+      .hero-center {
+        font-size: 2.4rem;
+        letter-spacing: 0.7rem;
+      }
 
-      <!-- Publications / Writing -->
-      <section id="publications">
-        <h2 class="section-title">Writing &amp; Presentations</h2>
-        <p style="margin-top: 6px;">
-          This section will highlight future case studies, class projects, and
-          presentations related to leadership, operations, and project management.
-        </p>
-        <ul style="margin-top: 8px;">
-          <li>Leadership evaluation projects (in progress)</li>
-          <li>Operations and process-improvement coursework</li>
-          <li>Future conference or class presentations</li>
-        </ul>
-      </section>
+      .hero-line-right {
+        right: 12%;
+      }
 
-      <!-- Portfolio -->
-      <section id="portfolio">
-        <h2 class="section-title">Projects &amp; Portfolio</h2>
-        <p style="margin-top: 6px;">
-          As I build out my portfolio, this area will feature selected projects,
-          including operations workflows, event planning, and project management
-          case studies.
-        </p>
-        <ul style="margin-top: 8px;">
-          <li>Operations / internal process improvement projects (coming soon)</li>
-          <li>Event planning &amp; coordination examples (coming soon)</li>
-          <li>Academic project spotlights (coming soon)</li>
-        </ul>
-      </section>
+      .hero-line-left {
+        left: 8%;
+      }
 
-      <!-- Skills -->
-      <section id="skills">
-        <h2 class="section-title">Key Skills &amp; Tools</h2>
-        <ul style="margin-top: 6px;">
-          <li>Project coordination &amp; scheduling</li>
-          <li>Operations and process organization</li>
-          <li>Stakeholder communication and support</li>
-          <li>Event planning and logistics</li>
-          <li>Beginner web development (HTML/CSS)</li>
-        </ul>
-      </section>
+      .section-wrapper {
+        padding: 50px 16px 70px;
+      }
 
-      <!-- Process -->
-      <section id="process">
-        <h2 class="section-title">Process &amp; Methodologies</h2>
-        <ul style="margin-top: 6px;">
-          <li>Project management fundamentals (scope, timelines, tasks)</li>
-          <li>Lean Six Sigma concepts (in progress)</li>
-          <li>Continuous improvement mindset</li>
-          <li>Collaborative, people-centered approach to work</li>
-        </ul>
-      </section>
+      .resume-card {
+        padding: 28px 22px 30px;
+      }
+    }
+  </style>
+</head>
 
-      <!-- Contact -->
-      <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <p style="margin-top: 6px;">
-          Interested in connecting about project coordination, operations, or
-          future opportunities? You can reach me at:
-        </p>
-        <ul style="margin-top: 8px;">
-          <li>Email: <strong>[add your email here]</strong></li>
-          <li>LinkedIn: <strong>[add your LinkedIn URL here]</strong></li>
-        </ul>
-      </section>
+<body>
+
+  <!-- ========= HERO INTRO COVER ========= -->
+
+  <section class="hero">
+    <div class="hero-top float-in">
+      WORK AND EDUCATION
     </div>
-  </body>
-</html>
+
+    <div class="hero-center portfolio-word">
+      PORTFOLIO
+    </div>
+
+    <div class="hero-bottom float-in-delay">
+      RAISSA N. HARRELL
+    </div>
+
+    <div class="scroll-hint float-in-delay">
+      scroll to continue ↓
+    </div>
+
+    <div class="hero-line hero-line-right"></div>
+    <div class="hero-line hero-line-left"></div>
+  </section>
+
+  <!-- ========= RESUME SECTION (SCROLL DOWN) ========= -->
+
+  <div class="section-wrapper">
+    <div class="resume-card">
+  <!-- HEADER (NAME + CONTACT) -->
+  <div class="resume-header">
+    <h1>Raissa N. Harrell</h1>
+    <p class="resume-contact">
+      (480) 202-4650 &bull;
+      <a href="mailto:raissa.harrell@gmail.com">raissa.harrell@gmail.com</a> &bull;
+      <a href="https://www.linkedin.com/in/raissanharrell" target="_blank">
+        www.linkedin.com/in/raissanharrell
+      </a>
+    </p>
+  </div>
+
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section-title">PROFESSIONAL SUMMARY</div>
+  <div class="hr-line"></div>
+
+  <p class="resume-body">
+    Organized and resourceful project coordinator with over 8 years of experience
+    supporting legal, operations, and event-based teams. Comfortable managing many
+    moving parts at once, creating structure from chaos, and communicating clearly
+    with stakeholders. Currently pursuing an MBA in Project Management to deepen
+    leadership, strategy, and execution across creative and operational projects.
+  </p>
+
+  <!-- EDUCATION -->
+  <div style="margin-top: 26px;">
+    <div class="section-title">EDUCATION</div>
+    <div class="hr-line"></div>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        Grand Canyon University &mdash; MBA, Emphasis in Project Management
+      </div>
+      <div class="edu-right">
+        Expected Graduation: May 2027
+      </div>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        Arizona State University &mdash; B.S., Criminology and Criminal Justice
+      </div>
+      <div class="edu-right">
+        May 2018
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <div style="margin-top: 26px;">
+    <div class="section-title">PROFESSIONAL EXPERIENCE</div>
+    <div class="hr-line"></div>
+
+    <!-- Grand Canyon University -->
+<div class="job">
+  <div class="job-header">
+    <div>
+      Grand Canyon University — <span class="job-location">Phoenix, AZ</span>
+    </div>
+    <div>Nov 2025 — Present</div>
+  </div>
+
+  <div class="job-title">Operations Specialist </div>
+
+  <ul>
+    <li>Support daily operational workflows for university programs, coordinating schedules, task tracking, and communications across multiple team members and departments.</li>
+    <li>Assist with planning and execution of campus and departmental events by coordinating logistics, organizing resources, and ensuring timelines and deliverables are met.</li>
+    <li>Provide project coordination support by organizing documents, monitoring task progress, and helping maintain alignment between stakeholders and leadership.</li>
+    <li>Contribute to process improvement efforts by identifying gaps, documenting workflows, and supporting the creation of clearer procedures and team guidelines.</li>
+    <li>Serve as a reliable point of support for staff and event teams by responding to operational needs, assisting with troubleshooting, and helping maintain organized project environments.</li>
+  </ul>
+</div>
+
+<!-- Career Transition & Graduate Studies -->
+<div class="job">
+  <div class="job-header">
+    <div>
+      Professional Development & Career Transition
+    </div>
+    <div>May 2025 — Nov 2025</div>
+  </div>
+
+  <div class="job-title">Transition Into Project Management & Operations</div>
+
+  <ul>
+    <li>Began formal transition into project management and operations roles with a focus on developing strategic, leadership-aligned career skills.</li>
+    <li>Enrolled in MBA program with a Project Management emphasis to strengthen business foundations, leadership development, and analytical decision-making.</li>
+    <li>Completed professional coursework, certifications research, and structured independent learning aligned with PMP career preparation.</li>
+    <li>Engaged in reflective goal-setting to realign professional direction toward long-term project leadership and operational coordination roles.</li>
+  </ul>
+</div>
+
+    <!-- Polsinelli -->
+    <div class="job">
+      <div class="job-header">
+        <div>
+          Polsinelli &mdash; <span class="job-location">Phoenix, AZ</span>
+        </div>
+        <div>Feb 2023 &ndash; May 2025</div>
+      </div>
+      <div class="job-title">Legal Specialist &mdash; Litigation Support</div>
+      <ul>
+        <li>Led an 8-month document clean-up and migration for 12,000+ litigation files.</li>
+        <li>Collaborated with paralegals and leadership to streamline templates and workflows.</li>
+        <li>Supported DEI and firm culture initiatives through staff engagement and events.</li>
+      </ul>
+    </div>
+
+    <!-- R.R. Donnelley / Milbank LLP -->
+    <div class="job">
+      <div class="job-header">
+        <div>
+          R.R. Donnelley (Milbank LLP) &mdash; <span class="job-location">Phoenix, AZ</span>
+        </div>
+        <div>Feb 2022 &ndash; Oct 2022</div>
+      </div>
+      <div class="job-title">Project &amp; Team Coordinator</div>
+      <ul>
+        <li>Coordinated work between U.S. and offshore teams for high-volume legal projects.</li>
+        <li>Tracked documentation, deadlines, and quality checks across multiple matters.</li>
+        <li>Created simple guides and checklists to support faster onboarding for new staff.</li>
+      </ul>
+    </div>
+
+    <!-- You can add more roles here later the same way -->
+  </div>
+</div>
+ 
